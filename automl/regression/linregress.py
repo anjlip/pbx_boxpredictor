@@ -45,7 +45,7 @@ for output in outcols:
     testX = testdata[elementlist]
     testy = testdata[output]
 
-    pipeline_optimizer = TPOTRegressor(generations=20, population_size=100, verbosity=2, n_jobs=1)
+    pipeline_optimizer = TPOTRegressor(generations=20, population_size=100, verbosity=2, n_jobs=1) # applying TPOT
     pipeline_optimizer.fit(trainX, trainy)
 
     testscore = pipeline_optimizer.score(testX, testy)

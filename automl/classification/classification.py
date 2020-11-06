@@ -14,7 +14,7 @@ from tpot import TPOTClassifier
 # Get columns of interest:
 outcols = ['V_min', 'V_max', 'pH_min', 'pH_max', 'area', 'energy_per_atom', 'O']
 
-#slopedata = pickle.load(open('binarycorrdata_pvals.pickle', 'rb'))
+#slopedata = pickle.load(open('binarycorrdata_pvals.pickle', 'rb')) # this dataset filters the correlation coeffs based on p-vals below threshold
 slopedata = pickle.load(open('binarycorrdata.pickle', 'rb'))
 
 # Split training and test:
@@ -61,7 +61,7 @@ for output in outcols:
     trainy = traindata[output]
     testy = testdata[output]
 
-    pipeline_optimizer = TPOTClassifier(generations=10, population_size=100, verbosity=2, n_jobs=1)
+    pipeline_optimizer = TPOTClassifier(generations=10, population_size=100, verbosity=2, n_jobs=1) # optimizing model using TPOT
     pipeline_optimizer.fit(trainX, trainy)
 
     print(output)

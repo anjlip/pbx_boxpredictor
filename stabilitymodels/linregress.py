@@ -9,7 +9,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import seaborn as sns
 
-''' Linear regression of stability outputs wrt composition and new descriptors '''
+''' Linear regression of stability outputs wrt composition and new descriptors.
+    Both mean and difference of new descriptors for each  metal combination are considered.'''
 
 # Load data:
 data = pickle.load(open('newdescriptor_stabilitydf.pickle', 'rb'))
@@ -56,14 +57,7 @@ for col in range(len(outcols)):
     plt.yticks(fontsize = fontsize - 3)
     plt.tight_layout()
 
-'''
-# Plotting correlations of outputs to energy per atom (shows this isn't everything):
-for i in outcols[:-1]:
-    plt.figure()
-    print(i)
-    plt.plot(data[outcols[-1]], data[i], marker = 'o', linestyle = 'None')
-    plt.title(i)
-'''
+# Note: Correlations of outputs to energy per atom shows this isn't everything
 
 # Fit new descriptor linear regression:
 proplist = ['electronegativity', 'valency', 'dband', 'atomic_radius', 'ionization_energy', 'oxidation_state', 'standard_potential', 'atomic_mass', 'covalent_radius']
@@ -81,7 +75,6 @@ testy = testdata[outcols]
 meanlm = LinearRegression()
 meanmodel = meanlm.fit(trainX, trainy)
 meanpredictions = meanlm.predict(testX)
-
 
 for col in range(len(outcols)):
     print('Mean New Descriptor Fit RMSE ({}): {}'.format(outcols[col], (mean_squared_error(testy[outcols[col]], meanpredictions[:, col]))**0.5))

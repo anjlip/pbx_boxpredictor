@@ -49,6 +49,7 @@ for output in outcols:
     pipeline_optimizer.fit(trainX, trainy)
 
     testscore = pipeline_optimizer.score(testX, testy) # Default score: MSE
+    # calculate alternative scores w/sklearn: testscore_r2 = 
 
     print('{} Test Score: {}'.format(output, testscore))
 

@@ -6,7 +6,7 @@ import seaborn as sns
 from copy import deepcopy
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
+from sklearn.metrics import mean_squared_error, r2_score
 import seaborn as sns
 from tpot import TPOTRegressor
 
@@ -49,7 +49,7 @@ for output in outcols:
     pipeline_optimizer.fit(trainX, trainy)
 
     testscore = pipeline_optimizer.score(testX, testy) # Default score: MSE
-    # calculate alternative scores w/sklearn: testscore_r2 = 
+    # calculate alternative scores w/sklearn: testscore_r2 = r2_score(pipeline_optimizer, testX, testy)
 
     print('{} Test Score: {}'.format(output, testscore))
 

@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import seaborn as sns
 
-''' Linear regression of stability outputs wrt composition and new descriptors '''
+''' Principal component analysis of stability outputs wrt composition and new descriptors '''
 
 # Load data:
 data = pickle.load(open('newdescriptor_stabilitydf.pickle', 'rb'))
